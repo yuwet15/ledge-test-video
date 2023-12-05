@@ -1,5 +1,6 @@
 import firebaseApp from '../config/firebaseConfig'
 import { getFirestore, doc, DocumentReference, DocumentData, onSnapshot, getDoc, setDoc } from 'firebase/firestore'
+import type { VideoData } from 'myTypes'
 
 const db = getFirestore(firebaseApp)
 
@@ -7,14 +8,14 @@ const db = getFirestore(firebaseApp)
 function observeData (
   collection: string,
   id: string,
-  callback: (data: DocumentData | null) => void
+  callback: (data: VideoData) => void
 ) {
   const docRef: DocumentReference<DocumentData> = doc(db, collection, id)
 
   // Use onSnapshot to observe changes in the document
   const unsubscribe = onSnapshot(docRef, (docSnap) => {
     if (docSnap.exists()) {
-      const data = docSnap.data()
+      const data = docSnap.data() as VideoData
       callback(data)
     }
   })

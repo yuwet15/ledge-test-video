@@ -1,35 +1,42 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { getData, saveData, observeData } from '../utils/firestore'
+import { getData, observeData } from '../utils/firestore'
+import { saveDataToFirestore } from '../utils/saveCount'
+import type { VideoData } from 'myTypes'
 
-// Function to save data to firestore
-const saveDataToFirestore = async (inputValue: Object) => {
-  const { error } = await saveData('video', 'video1', inputValue)
-  if (error) {
-    console.log(error)
-  }
-}
+import Video from '../components/Video'
+import { FaEye } from 'react-icons/fa'
 
 export default function HomePage () {
-  const [inputValue, setInputValue] = useState({ count: 0 })
+  const [videoCount, setVideoCount] = useState<VideoData>({ count: 0 })
+
   useEffect(() => {
-    getData('video', 'video1')
-      .then((videoData: any) => {
-        try {
-          console.log(videoData.data.data())
-        } catch (error) {
-          console.log(error)
+    async function fetchData () {
+      try {
+        const videoData = await getData('video', 'video1')
+        if (!videoData?.data?.data()) {
           saveDataToFirestore({ count: 0 })
         }
-      })
-    observeData('video', 'video1', (data: any) => setInputValue(data))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchData()
+    observeData('video', 'video1', (data: VideoData) => setVideoCount(data))
   }, [])
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Visitas: {inputValue.count}</p>
-      <button onClick={() => saveDataToFirestore({ count: inputValue.count + 1 })}>+</button>
+    <div className='bg-zinc-900 flex flex-col w-screen h-screen py-5 items-center '>
+      <h1 className='text-center text-3xl md:text-5xl text-white mb-4'>I'm Groot</h1>
+      <div className='flex justify-center 2xl:w-8/12 xl:w-9/12 lg:w-10/12 w-11/12 rounded-3xl overflow-hidden drop-shadow-2xl'>
+        <Video countData={videoCount.count} />
+      </div>
+      <div className='flex flex-row justify-center items-center my-4'>
+        <FaEye color='white' />
+        <h2 className='text-center text-white text-xl ms-2'>
+          {videoCount.count}
+        </h2>
+      </div>
     </div>
   )
 }

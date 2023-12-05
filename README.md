@@ -2,11 +2,17 @@
 Nombre: Yuwen Cheng
 URL pagina: temporalmente no disponible aun.
 
+### Supuestos
+- El contador de visualizaciones aumentará en 1 si el video pasa el 60% de su duracion máxima, sin importar si realmente vió el 60%.
+- Se reincia y se activa nuevamente para detectar la visualización si el video está en un tiempo inferior al 5% de su duración maxima, eso quiere decir que volverá a contar una visualización luego de llegar al 60%.
+- El contador se actualizará para todos los que estén viendo en la pagina sin tener que recargar la página. Eso quiere decir que si otra persona aumentó en 1 la visualización, se verá reflejado en mi dispositivo de igual manera sin tener que recargar la página.
+- La página cumple con los requisitos minimos pedidos, no se agregó nada extra.
+
 ### Requisitos Funcionales
-1. 📝Reproducción de Video
-2. 📝Contador de Visualizaciones
-3. 📝Controles de Reproducción
-4. 📝Responsividad
+1. ✅Reproducción de Video
+2. ✅Contador de Visualizaciones
+3. ✅Controles de Reproducción
+4. ✅Responsividad
 
 ### Requisitos Técnicos
 1. Frontend: Se utilizó Next.js 14
