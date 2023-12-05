@@ -31,7 +31,9 @@ NEXT_PUBLIC_FIREBASE_appId
 ```
 
 ## Instalar las dependencias
-Para instalar las dependencias use algunos de los siguientes comandos
+Para instalar las dependencias use algunos de los siguientes comandos.
+
+Requisito node18
 
 ```bash
 npm install
