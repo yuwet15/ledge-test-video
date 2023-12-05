@@ -1,6 +1,6 @@
 # Tarea Técnica para Desarrollador - Ledge
 Nombre: Yuwen Cheng
-URL pagina: temporalmente no disponible aun.
+URL pagina: https://ledge-test-video.vercel.app
 
 ### Supuestos
 - El contador de visualizaciones aumentará en 1 si el video pasa el 60% de su duracion máxima, sin importar si realmente vió el 60%.

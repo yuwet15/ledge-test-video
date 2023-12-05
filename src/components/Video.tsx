@@ -30,7 +30,7 @@ const VideoPage = ({
       ref={videoRef}
       onTimeUpdate={handleTimeUpdate}
       controls
-      autoPlay={false}
+      autoPlay
       src='/video/iamgroot.mp4'
     />
   )
